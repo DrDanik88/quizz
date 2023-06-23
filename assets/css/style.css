@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial;
+    margin: 0;
+  }
+/*I need to flexbox the quiz thing, but I don't have the time right now. So I've put a DIV called quizzwindow and I'll see what I can do about it later.*/
+body{
+    margin: 5rem 5rem 5rem 5rem;
+    min-height: 60vh;
+    border: solid black;
+    max-width: 50rem;
+}
+
+  header {
+    display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      font-size: smaller;
+      padding-bottom: 2rem;
+    }
+  
+      .left-link {
+      text-decoration: none;
+      color: blueviolet;
+       }
+       
+    .right-timer {
+      text-align: right;
+    }
+
+    main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    main .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0;
+    }
+    #textbelowtitle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+.buttoncontainer {
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+    .btn {
+            background-color: blueviolet;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #2be2ae;
+    }
+    
