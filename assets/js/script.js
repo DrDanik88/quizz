@@ -15,6 +15,7 @@ var secondsLeft = 75;
 var currentquestion=-1; //we will create jsut one function to go from one question to another...so basically, the nextquestion will need to pick item 0 in the array. The nextquestion function will increment of 1 the variable currentquestion, hence the need to start at -1//
 var score=secondsLeft;
 
+
 // Questions that will be asked. I liked the model from geeksforgeeks since it was easily readable.
 const Questions = [{
     qarray: "A B ____ D E F G",
@@ -68,7 +69,9 @@ const Questions = [{
 }
  
 ]
- 
+for (let i = 0; i < Questions.length; i++) {
+  console.log(Questions[i].ansarray[i]);
+}
 
 
 
@@ -104,7 +107,7 @@ function removestartbutton() {
   */
 function nextquestion() {
     currentquestion++;
-    
+    console.log(currentquestion)
   
     //If there are no more questions, end the quizz
     if (currentquestion === Questions.length) {
@@ -113,9 +116,9 @@ function nextquestion() {
     }
 
     //remove previous buttons if they are there
+else
 
-
-    console.log(Questions.length)
+    answerdivbtn.innerHTML = ""; //empty innerHTML if any
     title.textContent = Questions[currentquestion].qarray;
     for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
       const answerbtn = document.createElement("button");
@@ -128,7 +131,7 @@ function nextquestion() {
     //then create the onclick event to launch the function AnswerClick
     //append the newly created button to the answerdivbtn section (named in the variable) as the div container for the buttons.
     
-
+   
 
 
 
