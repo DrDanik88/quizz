@@ -104,11 +104,17 @@ function removestartbutton() {
   */
 function nextquestion() {
     currentquestion++;
+    
+  
     //If there are no more questions, end the quizz
     if (currentquestion === Questions.length) {
       alert("game ended");
        //endgame();
     }
+
+    //remove previous buttons if they are there
+
+
     console.log(Questions.length)
     title.textContent = Questions[currentquestion].qarray;
     for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
@@ -116,26 +122,21 @@ function nextquestion() {
       answerbtn.textContent = Questions[currentquestion].ansarray[i].text;
       answerbtn.onclick = AnswerClick;
       answerdivbtn.appendChild(answerbtn);
+    //this function says for each I in the array, repeat below:
+    //make a variable name answertbtn and create a new button element
+    //in the css code, each button element has the same style
+    //then create the onclick event to launch the function AnswerClick
+    //append the newly created button to the answerdivbtn section (named in the variable) as the div container for the buttons.
     
-    
 
 
 
-/*
-    for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
-    //this for loop is necessary to execute for each of the choices in the array. This is where we build the actual buttons and then we append them to the div id answers..nested function needed 
 
-
-
-        answerbtn.textContent = Questions[currentquestion].ansarray[i].text;
-        answerdivbtn.appendChild(answerbtn);
-        //choicesdiv.appendChild(answerbtn);
-  */     
     }
 }
 
 function AnswerClick() {
-  
+  nextquestion();
 }
 
 //First we need "start" a function
