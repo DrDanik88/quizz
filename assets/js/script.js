@@ -1,18 +1,25 @@
+//using var is the old way. It should be const and let. this make the code more fluid updated as per the newest best practices.
 var timeleft = document.querySelector("#time");
 var hiscore = document.querySelector(".left-link");
-var boldtxt = document.querySelector(".title");
+var title = document.querySelector("#title");
 var Elbelowtitle = document.querySelector("#Elbelowtitle");
+var pbelowtitle = Elbelowtitle.querySelector("#ptext");
 var btncontainer = document.querySelector(".buttoncontainer");
+var answers = document.querySelector(".answers");
 var startbtn = document.querySelector("#startbtn");
+var answerdivbtn = document.querySelector("#divanswerbtn");
+var answerbtn = document.querySelector(".answerbtn");
 var answerresult = document.querySelector("#answerresult");
+var test = document.querySelector("#testtext");
 var secondsLeft = 75;
-var currentquestion=0;
+var currentquestion=-1; //we will create jsut one function to go from one question to another...so basically, the nextquestion will need to pick item 0 in the array. The nextquestion function will increment of 1 the variable currentquestion, hence the need to start at -1//
 var score=secondsLeft;
 
 // Questions that will be asked. I liked the model from geeksforgeeks since it was easily readable.
 const Questions = [{
-    q: "A B ____ D E F G",
-    a: [{ text: "T", isCorrect: false },
+    qarray: "A B ____ D E F G",
+    ansarray: [
+    { text: "T", isCorrect: false },
     { text: "G", isCorrect: false },
     { text: "C", isCorrect: true },
     { text: "X", isCorrect: false }
@@ -20,8 +27,9 @@ const Questions = [{
  
 },
 {
-    q: " ____ minus 4 minus 2 equals ZERO",
-    a: [{ text: "16", isCorrect: false/*, isSelected: false*/ },
+    qarray: " ____ minus 4 minus 2 equals ZERO",
+    ansarray: [
+    { text: "16", isCorrect: false/*, isSelected: false*/ },
     { text: "66", isCorrect: false },
     { text: "166", isCorrect: false },
     { text: "6", isCorrect: true }
@@ -29,8 +37,9 @@ const Questions = [{
  
 },
 {
-    q: "What does the fox say ? ________",
-    a: [{ text: "woof", isCorrect: false },
+    qarray: "What does the fox say ? ________",
+    ansarray: [
+    { text: "woof", isCorrect: false },
     { text: "gring-ding-ding", isCorrect: true },
     { text: "meow", isCorrect: false },
     { text: "squeek", isCorrect: false }
@@ -38,8 +47,9 @@ const Questions = [{
  
 },
 {
-    q: "String values must be enclosed within _____ when being assigned to variables.",
-    a: [{ text: "commas", isCorrect: false },
+    qarray: "String values must be enclosed within _____ when being assigned to variables.",
+    ansarray: [
+    { text: "commas", isCorrect: false },
     { text: "curly braces", isCorrect: false },
     { text: "quotes", isCorrect: true },
     { text: "parentheses", isCorrect: false }
@@ -47,8 +57,9 @@ const Questions = [{
  
 },
 {
-    q: "If the man had blue shoes, and his dog had _____ paws, the bus driver would be 65 years old.",
-    a: [{ text: "1", isCorrect: false },
+    qarray: "If the man had blue shoes, and his dog had _____ paws, the bus driver would be 65 years old.",
+    ansarray: [
+    { text: "1", isCorrect: false },
     { text: "88", isCorrect: false },
     { text: "22", isCorrect: false },
     { text: "4", isCorrect: true }
@@ -75,30 +86,65 @@ function startTimer() {
         // Calls function to create and append image
         alert("You lost LOL");
       }
-  //NEEDTO launch the function youlostlol
+  //NEEDTO launch the function youlostlol---it doesn't exist yet
     }, 1000);
   }
 
 function removestartbutton() {
     btncontainer.removeChild(startbtn);
+    answerdivbtn.classList.remove("hide"); /*show 4 answers button on main page*/
+    pbelowtitle.classList.add("hide"); /*hide the paragraph under the main tilte once the game is started*/
 }
 
 
   /*this function needs to 
-  1.replace the boldtxt by the text of the question,
-  2.replace Elbelowtitle by 4 buttons containing answers
+  1.replace the title var by the text of the question "q",
+  2.replace text by 4 buttons containing answers
   3.when the user clicks the answer go to next function
   */
-function startquestions() {
+function nextquestion() {
+    currentquestion++;
+    //If there are no more questions, end the quizz
+    if (currentquestion === Questions.length) {
+      alert("game ended");
+       //endgame();
+    }
+    console.log(Questions.length)
+    title.textContent = Questions[currentquestion].qarray;
+    for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
+      const answerbtn = document.createElement("button");
+      answerbtn.textContent = Questions[currentquestion].ansarray[i].text;
+      answerbtn.onclick = AnswerClick;
+      answerdivbtn.appendChild(answerbtn);
+    
+    
 
+
+
+/*
+    for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
+    //this for loop is necessary to execute for each of the choices in the array. This is where we build the actual buttons and then we append them to the div id answers..nested function needed 
+
+
+
+        answerbtn.textContent = Questions[currentquestion].ansarray[i].text;
+        answerdivbtn.appendChild(answerbtn);
+        //choicesdiv.appendChild(answerbtn);
+  */     
+    }
+}
+
+function AnswerClick() {
+  
 }
 
 //First we need "start" a function
 //This eventlistener will start timer, and launch 
 startbtn.addEventListener("click", function() {
-    startquestions();
     startTimer();
     removestartbutton();
+    nextquestion();
+    console.log(Questions)
   });
 
 

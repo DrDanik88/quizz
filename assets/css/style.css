@@ -39,7 +39,9 @@
     .right-timer {
       text-align: right;
 }
-
+    .hide { /*use this to hide the buttons on the first page and final page remove class to show*/
+    display: none;
+}
     main{
         display: flex;
         justify-content: center;
@@ -65,13 +67,15 @@
         align-items: center;
 }
 
-    .btn {
+    button {
         background-color: var(--bvv);
         color: white;
         border: none;
         border-radius: 10px;
         padding: 10px 20px;
         cursor: pointer;
+        margin-right: 1rem;
+        margin-top: 2rem;
 }
     .btn:hover {
         background-color: var(--greenv);

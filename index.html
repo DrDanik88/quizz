@@ -16,15 +16,18 @@
      </header>
     <main> 
             <div id="mainsection">
-                <h1 class="title">Code Quizz Challenge</h1>
+                <h1 class="title" id="title">Code Quizz Challenge</h1>
             <div id="Elbelowtitle"> <!--container for the first screen and last screen text and high scores key pair values-->
-                 <p class> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
+                 <p id="ptext"> Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!
                 </p>
             </div> <!---closing div for id="Elbelowtitle"--->
             
-            <div class="buttoncontainer"> <!---container for buttons.yes the submit button will appear there as well instead of at the end of the text field, but I think we'll survive-->
-            <button class=btn id="startbtn">Start Quizz</button>    
-            </div>
+            <div class="buttoncontainer" id="answers"> <!---container for buttons.yes the submit button will appear there as well instead of at the end of the text field, but I think we'll survive-->
+            <button class=btn id="startbtn">Start Quizz</button>
+            <div class="hide" id="divanswerbtn">    
+            
+          </div>
+          </div>
             <div id="resultcontainer"> <!--This is a container to show only when the Correct:) or Wrong :(  needs to be shown-->
                 <p id="answerresult"></p>
             </div>
