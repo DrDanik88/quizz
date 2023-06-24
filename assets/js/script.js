@@ -124,6 +124,7 @@ function nextquestion() {
     for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
       const answerbtn = document.createElement("button");
       answerbtn.textContent = Questions[currentquestion].ansarray[i].text;
+      
       answerbtn.onclick = AnswerClick;
       answerdivbtn.appendChild(answerbtn);
     //this function says for each I in the array, repeat below:
@@ -136,7 +137,7 @@ function nextquestion() {
 
     }
 }
-
+//This function need to see if the answer clicked is true or not
 function AnswerClick() {
   console.log( Questions[currentquestion].ansarray.text)
   nextquestion();
