@@ -16,6 +16,7 @@ var currentquestion=-1; //we will create jsut one function to go from one questi
 var score=secondsLeft;
 
 
+
 // Questions that will be asked. I liked the model from geeksforgeeks since it was easily readable.
 const Questions = [{
     qarray: "A B ____ D E F G",
@@ -69,9 +70,7 @@ const Questions = [{
 }
  
 ]
-for (let i = 0; i < Questions.length; i++) {
-  console.log(Questions[i].ansarray[i]);
-}
+
 
 
 
@@ -86,12 +85,14 @@ function startTimer() {
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
-        // Calls function to create and append image
-        alert("You lost LOL");
+        endgame();
       }
-  //NEEDTO launch the function youlostlol---it doesn't exist yet
-    }, 1000);
+     }, 1000);
   }
+  function stopTimer() {
+    clearInterval(timerInterval);
+  }
+   
 
 function removestartbutton() {
     btncontainer.removeChild(startbtn);
@@ -102,23 +103,23 @@ function removestartbutton() {
 
   /*this function needs to 
   1.replace the title var by the text of the question "q",
-  2.replace text by 4 buttons containing answers
-  3.when the user clicks the answer go to next function
-  */
+  2.replace text by 4 buttons containing answers*/
+
 function nextquestion() {
     currentquestion++;
     console.log(currentquestion)
   
     //If there are no more questions, end the quizz
     if (currentquestion === Questions.length) {
-      alert("game ended");
-       //endgame();
+      answerdivbtn.innerHTML = ""; 
+      console.log(currentquestion);
+      endgame();
+      return;
     }
 
-    //remove previous buttons if they are there
-else
-
-    answerdivbtn.innerHTML = ""; //empty innerHTML if any
+   else
+  // by emptying the innerHTML, we will remove the buttons, if there are any
+    answerdivbtn.innerHTML = ""; 
     title.textContent = Questions[currentquestion].qarray;
     for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
       const answerbtn = document.createElement("button");
@@ -130,8 +131,6 @@ else
     //in the css code, each button element has the same style
     //then create the onclick event to launch the function AnswerClick
     //append the newly created button to the answerdivbtn section (named in the variable) as the div container for the buttons.
-    
-   
 
 
 
@@ -139,8 +138,19 @@ else
 }
 
 function AnswerClick() {
+  console.log( Questions[currentquestion].ansarray.text)
   nextquestion();
 }
+
+function endgame() {
+  console.log("done")
+  console.log(secondsLeft);
+  title.textContent = "All Done!!"
+  score=secondsLeft;
+  console.log(score);
+}
+
+
 
 //First we need "start" a function
 //This eventlistener will start timer, and launch 
