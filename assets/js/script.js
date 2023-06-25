@@ -17,6 +17,8 @@ var currentquestion=-1; //we will create jsut one function to go from one questi
 var score=secondsLeft;
 var submitButton;
 var namebox;
+var hiscorename;
+var existingArray = localStorage.getItem("hiscorename");
 
 
 
@@ -92,6 +94,11 @@ function startTimer() {
       }
      }, 1000);
   }
+
+
+
+
+  //DOES NOT WORK
   function stopTimer() {
     clearInterval(timerInterval);
   }
@@ -207,22 +214,32 @@ btncontainer.appendChild(submitButton);
 submitButton.addEventListener("click", function() {
   // Step 5: Retrieve the value of the textbox and log it to the console
   var textboxValue = namebox.value;
-  console.log(textboxValue)
+  console.log(textboxValue); ////console log the name
   savescorename ();
 });
 
-function savescorename() {
-    // Save related form data as an object
-    var hiscorename = {
-      score: score,
-      name: namebox.value.trim(),
-    };
-    // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
-    localStorage.setItem("hiscorename", JSON.stringify(hiscorename));
-  }
-  
+};
 
-}
+function savescorename() {
+  // Save related form data as an object in local storage
+  scorenamestring = {
+    score: score,
+    name: namebox.value.trim(),
+  };
+  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+  localStorage.setItem("hiscorename", JSON.stringify(scorenamestring));
+  //name of the key in object storage, strignify the string to store it with the key. We will append to it if a value is already present.
+};
+
+
+
+console.log(score);
+console.log(namebox);
+
+
+
+
+
 
 //First we need "start" a function
 //This eventlistener will start timer, and launch 
@@ -231,18 +248,8 @@ startbtn.addEventListener("click", function() {
     removestartbutton();
     nextquestion();
     console.log(Questions)
+
+    existingArray = JSON.parse(existingArray);
+  // Step 4: Log the array to the console
+  console.log(existingArray);
   });
-
-  
-
-
-
-
-
-
-
-
-
-
-//<-------------Event listener----------->//
-//start button
