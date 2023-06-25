@@ -17,8 +17,8 @@ var currentquestion=-1; //we will create jsut one function to go from one questi
 var score=secondsLeft;
 var submitButton;
 var namebox;
-var hiscorename;
-var existingArray = localStorage.getItem("hiscorename");
+var namescoreArray;
+var existingArray = localStorage.getItem("namescoreArray");
 
 
 
@@ -215,21 +215,47 @@ submitButton.addEventListener("click", function() {
   // Step 5: Retrieve the value of the textbox and log it to the console
   var textboxValue = namebox.value;
   console.log(textboxValue)
-  savescorename ();
+    namescoreArray = {
+    score: score,
+    name: namebox.value.trim(),
+  };
+  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
+  localStorage.setItem("hiscorename", JSON.stringify(namescoreArray)); ///HERE TEMPORARLY
+savescorename();
 });
 
 };
 
 function savescorename() {
-  // Save related form data as an object in local storage
-  hiscorename = {
+  // Retrieve existing data from localStorage
+  var existingData = localStorage.getItem("hiscorename");
+console.log("existing data");
+  console.log(existingData);
+// Check if existing data exists
+if (existingData) {
+  // Parse existing data from JSON string to an array
+  var existingArray = JSON.parse(existingData);
+
+  // Add new name and score to the existing array
+  existingArray.push({
     score: score,
     name: namebox.value.trim(),
-  };
-  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
-  localStorage.setItem("hiscorename", JSON.stringify(hiscorename));
-  
-};
+  });
+
+  // Store the updated array in localStorage
+  localStorage.setItem("hiscorename", JSON.stringify(existingArray));
+} else {
+  // If no existing data, create a new array with the current name and score
+  var newArray = [{
+    score: score,
+    name: namebox.value.trim(),
+  }];
+
+  // Store the new array in localStorage
+  localStorage.setItem("hiscorename", JSON.stringify(newArray));
+
+  } };
+
 
 
 
