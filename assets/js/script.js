@@ -19,6 +19,7 @@ var submitButton;
 var namebox;
 var namescoreArray;
 var existingArray = localStorage.getItem("namescoreArray");
+var timerInterval;
 
 
 
@@ -83,7 +84,7 @@ const Questions = [{
 /*-------------Functions------------*/
 function startTimer() {
     // Sets interval in variable
-    var timerInterval = setInterval(function() {
+    timerInterval = setInterval(function() {
       secondsLeft--;
       timeleft.textContent = secondsLeft;
   
@@ -184,7 +185,7 @@ function endgame() {
   title.textContent = "All Done!!"
   score=secondsLeft;
   console.log(score);
-  timeleft.textContent = 0;
+  stopTimer();
   scorename();
 }
 
@@ -226,9 +227,9 @@ namebox.classList.add("hide"); //hide namebox after submit click
 answerresult.textContent = (":)--------Thank you for playing--------(:");
         setTimeout(function() {
           // Execute this code after the delay
-          answerresult.innerHTML=""
-          nextquestion();
-        }, 1500); // Delay of 2000 milliseconds (2 seconds)
+          answerresult.innerHTML="" //this clears the privous shown message
+          }, 1500); // Delay of 2000 milliseconds (2 seconds)
+     
 });
 
 };
