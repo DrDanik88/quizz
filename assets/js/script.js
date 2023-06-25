@@ -219,42 +219,33 @@ submitButton.addEventListener("click", function() {
     score: score,
     name: namebox.value.trim(),
   };
-  // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
-  localStorage.setItem("hiscorename", JSON.stringify(namescoreArray)); ///HERE TEMPORARLY
-savescorename();
+
+savescorename(namescoreArray); //pass this namescoresArray object to the next function
+submitButton.classList.add("hide"); //hide submit button after submit click
+namebox.classList.add("hide"); //hide namebox after submit click
+answerresult.textContent = (":)--------Thank you for playing--------(:");
+        setTimeout(function() {
+          // Execute this code after the delay
+          answerresult.innerHTML=""
+          nextquestion();
+        }, 1500); // Delay of 2000 milliseconds (2 seconds)
 });
 
 };
 
-function savescorename() {
-  // Retrieve existing data from localStorage
-  var existingData = localStorage.getItem("hiscorename");
-console.log("existing data");
-  console.log(existingData);
+function savescorename(namescoreArray) { //namecoreArray object is specified here to recall it from the previous function and use it in this one
+   // Retrieve existing data from localStorage or an empty array
+  var existingData = JSON.parse(localStorage.getItem("hiscorename")) || []; //existing data will be an array in local storage or an empry array
+    console.log("existing data"); //debug
+    console.log(existingData); //debug
 // Check if existing data exists
-if (existingData) {
-  // Parse existing data from JSON string to an array
-  var existingArray = JSON.parse(existingData);
-
-  // Add new name and score to the existing array
-  existingArray.push({
-    score: score,
-    name: namebox.value.trim(),
-  });
-
+  if (existingData) {
+   // Add new name and score to the existing array
+  existingData.push(namescoreArray);
   // Store the updated array in localStorage
-  localStorage.setItem("hiscorename", JSON.stringify(existingArray));
-} else {
-  // If no existing data, create a new array with the current name and score
-  var newArray = [{
-    score: score,
-    name: namebox.value.trim(),
-  }];
-
-  // Store the new array in localStorage
-  localStorage.setItem("hiscorename", JSON.stringify(newArray));
-
-  } };
+  localStorage.setItem("hiscorename", JSON.stringify(existingData));
+} 
+} ;
 
 
 
