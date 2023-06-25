@@ -9,6 +9,7 @@ var answers = document.querySelector(".answers");
 var startbtn = document.querySelector("#startbtn");
 var answerdivbtn = document.querySelector("#divanswerbtn");
 var answerbtn = document.querySelector(".answerbtn");
+var resultcontainer = document.querySelector("#resultcontainer");
 var answerresult = document.querySelector("#answerresult");
 var test = document.querySelector("#testtext");
 var secondsLeft = 75;
@@ -144,22 +145,28 @@ function nextquestion() {
 function AnswerClick(isCorrect) {
   console.log("Is Correct: " + isCorrect);
   // Add your logic here based on the isCorrect value
-  if (isCorrect) {
-    AnswerClickTrue();
-  } else {
-    AnswerClickFalse();
+      if (isCorrect) {
+        answerresult.textContent = (":)--------RIGHT--------(:");
+        setTimeout(function() {
+          // Execute this code after the delay
+          answerresult.innerHTML=""
+          nextquestion();
+        }, 1000); // Delay of 2000 milliseconds (2 seconds)
+      
+        
+
+      } else {
+        secondsLeft = secondsLeft - 10;
+        answerresult.textContent = (":(--------SO WRONG--------):");
+        setTimeout(function() {
+          // Execute this code after the delay
+          answerresult.innerHTML=""
+          nextquestion();
+        }, 1000); // Delay of 2000 milliseconds (2 seconds)
+    ;
   }
 }
 
- function AnswerClickTrue() {
-  alert:(1234);
-  
- }
-
- function AnswerClickFalse() { 
-  alert:("False");
-  nextquestion();
-}
 
 function endgame() {
   answerdivbtn.innerHTML = ""; //clear buttons if timer finishes before all questions are answered.

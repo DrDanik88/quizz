@@ -87,6 +87,8 @@
         align-items: center;
 }
 
+
     #answerresult {
         color: var(--greenv);
+        font-weight: bolder;
 }
