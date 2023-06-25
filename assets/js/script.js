@@ -227,9 +227,10 @@ namebox.classList.add("hide"); //hide namebox after submit click
 answerresult.textContent = (":)--------Thank you for playing--------(:");
         setTimeout(function() {
           // Execute this code after the delay
-          answerresult.innerHTML="" //this clears the privous shown message
+          answerresult.innerHTML="" 
+          location.reload();//this clears the privous shown message
           }, 1500); // Delay of 2000 milliseconds (2 seconds)
-     
+          
 });
 
 };
