@@ -15,6 +15,8 @@ var test = document.querySelector("#testtext");
 var secondsLeft = 75;
 var currentquestion=-1; //we will create jsut one function to go from one question to another...so basically, the nextquestion will need to pick item 0 in the array. The nextquestion function will increment of 1 the variable currentquestion, hence the need to start at -1//
 var score=secondsLeft;
+var submitButton;
+var namebox;
 
 
 
@@ -175,9 +177,41 @@ function endgame() {
   title.textContent = "All Done!!"
   score=secondsLeft;
   console.log(score);
+  timeleft.textContent = 0;
+  scorename();
 }
 
+function scorename (){
+//I need to see the final score
+//Ask for First Name
+//Submit button to store name:highscore in localstorage
+pbelowtitle.classList.remove("hide"); //show the paragraph under the main title
+pbelowtitle.textContent = ("Congrats, your score is " + score);
 
+// Step 1: Create the textbox element
+namebox = document.createElement("input");
+namebox.type = "text";
+namebox.id = "nameTextbox";
+
+// Step 2: Create the submit button element
+submitButton = document.createElement("input");
+submitButton.type = "submit";
+submitButton.value = "Submit";
+submitButton.classList= "btn"
+submitButton.id = "nameSubmitButton";
+
+// Step 3: Append the elements to a container element
+btncontainer.appendChild(namebox);
+btncontainer.appendChild(submitButton);
+
+submitButton.addEventListener("click", function() {
+  // Step 5: Retrieve the value of the textbox and log it to the console
+  var textboxValue = namebox.value;
+  console.log(textboxValue)});
+
+
+  
+}
 
 //First we need "start" a function
 //This eventlistener will start timer, and launch 
@@ -188,6 +222,7 @@ startbtn.addEventListener("click", function() {
     console.log(Questions)
   });
 
+  
 
 
 

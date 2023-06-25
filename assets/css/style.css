@@ -61,6 +61,12 @@
         padding-left: 4rem;
         padding-right: 4rem;
 }
+    #ptext{
+        color: var(--greenv);
+        font-weight: bold;
+}
+
+
     .buttoncontainer {
         display: flex;
         justify-content: center;
@@ -76,7 +82,24 @@
         cursor: pointer;
         margin-right: 1rem;
         margin-top: 2rem;
+
 }
+
+.btn{
+    background-color: var(--bvv);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 1rem;
+    margin-top: 2rem;
+}
+
+input {
+    margin-top: 2rem;
+}
+
     .btn:hover {
         background-color: var(--greenv);
     }
@@ -86,7 +109,6 @@
         justify-content: center;
         align-items: center;
 }
-
 
     #answerresult {
         color: var(--greenv);
