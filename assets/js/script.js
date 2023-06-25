@@ -214,7 +214,7 @@ btncontainer.appendChild(submitButton);
 submitButton.addEventListener("click", function() {
   // Step 5: Retrieve the value of the textbox and log it to the console
   var textboxValue = namebox.value;
-  console.log(textboxValue); ////console log the name
+  console.log(textboxValue)
   savescorename ();
 });
 
@@ -222,14 +222,15 @@ submitButton.addEventListener("click", function() {
 
 function savescorename() {
   // Save related form data as an object in local storage
-  scorenamestring = {
+  hiscorename = {
     score: score,
     name: namebox.value.trim(),
   };
   // Use .setItem() to store object in storage and JSON.stringify to convert it as a string
-  localStorage.setItem("hiscorename", JSON.stringify(scorenamestring));
-  //name of the key in object storage, strignify the string to store it with the key. We will append to it if a value is already present.
+  localStorage.setItem("hiscorename", JSON.stringify(hiscorename));
+  
 };
+
 
 
 
@@ -249,7 +250,5 @@ startbtn.addEventListener("click", function() {
     nextquestion();
     console.log(Questions)
 
-    existingArray = JSON.parse(existingArray);
-  // Step 4: Log the array to the console
-  console.log(existingArray);
+    
   });
