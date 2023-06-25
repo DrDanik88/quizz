@@ -20,6 +20,8 @@ var namebox;
 var namescoreArray;
 var existingArray = localStorage.getItem("namescoreArray");
 var timerInterval;
+var viewhighscore = document.querySelector("#viewhighscore");
+var timertext = document.querySelector(".right-timer")
 
 
 
@@ -228,7 +230,7 @@ answerresult.textContent = (":)--------Thank you for playing--------(:");
         setTimeout(function() {
           // Execute this code after the delay
           answerresult.innerHTML="" 
-          location.reload();//this clears the privous shown message
+          location.reload();//refreshes the page to start over.
           }, 1500); // Delay of 2000 milliseconds (2 seconds)
           
 });
@@ -249,25 +251,97 @@ function savescorename(namescoreArray) { //namecoreArray object is specified her
 } 
 } ;
 
-
-
-
-
-console.log(score);
-console.log(namebox);
-
-
-
-
-
-
 //First we need "start" a function
 //This eventlistener will start timer, and launch 
 startbtn.addEventListener("click", function() {
     startTimer();
     removestartbutton();
     nextquestion();
-    console.log(Questions)
+    console.log(Questions); 
+  });
 
+  /////VIEW HIGH SCORE SECTION
+  viewhighscore.addEventListener("click", function() {
+    console.log("mouse click on View High Score Link");
+    showhighscores();
+    removestartbutton();
+    hiscore.classList.add("hide");
+    timertext.classList.add("hide");
+  });
+
+  function showhighscores() {
+    // Retrieve "hiscorename" array from localStorage
+    var hiscorenameArray = localStorage.getItem("hiscorename");
+
+// Check if the array exists and is not null
+    if (hiscorenameArray) {
+  // Parse the array from JSON string to JavaScript object
+    var scores = JSON.parse(hiscorenameArray);
+
+  // Sort the scores array by the "score" property in descending order
+    scores.sort(function(a, b) {
+    return b.score - a.score;
+  });
+
+  // Create the table HTML
+    var tableHTML = "<table>";
+    tableHTML += "<tr><th>Name</th><th>Score</th></tr>";
+
+  // Loop through the scores array and generate table rows
+    for (var i = 0; i < scores.length; i++) {
+    tableHTML += "<tr>";
+    tableHTML += "<td>" + scores[i].name + "</td>";
+    tableHTML += "<td>" + scores[i].score + "</td>";
+    tableHTML += "</tr>";
+  }
+
+    tableHTML += "</table>";
+
+  // Display the table in the "Elbelowtitle" div
+    document.getElementById("Elbelowtitle").innerHTML = tableHTML;
+} else {
+  // Display a message when no scores are found
+   document.getElementById("Elbelowtitle").innerHTML = "No scores found.";
+}
+//create go back button
+gobackbtn = document.createElement("input");
+gobackbtn.type = "submit";
+gobackbtn.value = "Go Back";
+gobackbtn.classList= "btn"
+gobackbtn.id = "gobackbtn";
+// Step 3: Append the elements to a container element
+btncontainer.appendChild(gobackbtn);
+
+//create go back button
+clearscoresbtn = document.createElement("input");
+clearscoresbtn.type = "submit";
+clearscoresbtn.value = "Clear Scores";
+clearscoresbtn.classList= "btn"
+clearscoresbtn.id = "clearscoresbtn";
+// Step 3: Append the elements to a container element
+btncontainer.appendChild(clearscoresbtn);
+
+
+
+viewhighscore.addEventListener("click", function() {
+    console.log("mouse click on View High Score Link");
+   
     
   });
+  gobackbtn.addEventListener("click",function() {
+    console.log("mouse click on Goback button");
+    btncontainer.innerHTML = ""; 
+    location.reload();
+  })
+
+  clearscoresbtn.addEventListener("click",function() {
+    console.log("mouse click on clear scores button");
+    btncontainer.innerHTML = ""; 
+    localStorage.clear();
+    location.reload();
+  })
+
+  
+  };
+
+ 
