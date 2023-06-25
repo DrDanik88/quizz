@@ -123,9 +123,10 @@ function nextquestion() {
     title.textContent = Questions[currentquestion].qarray;
     for (let i = 0; i < Questions[currentquestion].ansarray.length; i++) {
       const answerbtn = document.createElement("button");
-      answerbtn.textContent = Questions[currentquestion].ansarray[i].text;
-      
-      answerbtn.onclick = AnswerClick;
+      answerbtn.textContent = Questions[currentquestion].ansarray[i].text
+      answerbtn.onclick = function() {
+        AnswerClick(Questions[currentquestion].ansarray[i].isCorrect);
+      };//This functions passes out if the answer is True or False to the function AnswerClick(isCorrect) with the parameter isCorrect. In the console log you can see if it is true or false.
       answerdivbtn.appendChild(answerbtn);
     //this function says for each I in the array, repeat below:
     //make a variable name answertbtn and create a new button element
@@ -138,12 +139,30 @@ function nextquestion() {
     }
 }
 //This function need to see if the answer clicked is true or not
-function AnswerClick() {
-  console.log( Questions[currentquestion].ansarray.text)
+
+// Function to handle the button click
+function AnswerClick(isCorrect) {
+  console.log("Is Correct: " + isCorrect);
+  // Add your logic here based on the isCorrect value
+  if (isCorrect) {
+    AnswerClickTrue();
+  } else {
+    AnswerClickFalse();
+  }
+}
+
+ function AnswerClickTrue() {
+  alert:(1234);
+  
+ }
+
+ function AnswerClickFalse() { 
+  alert:("False");
   nextquestion();
 }
 
 function endgame() {
+  answerdivbtn.innerHTML = ""; //clear buttons if timer finishes before all questions are answered.
   console.log("done")
   console.log(secondsLeft);
   title.textContent = "All Done!!"
