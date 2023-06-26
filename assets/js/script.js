@@ -5,13 +5,11 @@ var title = document.querySelector("#title");
 var Elbelowtitle = document.querySelector("#Elbelowtitle");
 var pbelowtitle = Elbelowtitle.querySelector("#ptext");
 var btncontainer = document.querySelector(".buttoncontainer");
-var answers = document.querySelector(".answers");
 var startbtn = document.querySelector("#startbtn");
 var answerdivbtn = document.querySelector("#divanswerbtn");
 var answerbtn = document.querySelector(".answerbtn");
 var resultcontainer = document.querySelector("#resultcontainer");
 var answerresult = document.querySelector("#answerresult");
-var test = document.querySelector("#testtext");
 var secondsLeft = 75;
 var currentquestion=-1; //we will create jsut one function to go from one question to another...so basically, the nextquestion will need to pick item 0 in the array. The nextquestion function will increment of 1 the variable currentquestion, hence the need to start at -1//
 var score=secondsLeft;
@@ -98,14 +96,9 @@ function startTimer() {
      }, 1000);
   }
 
-
-
-
-  //DOES NOT WORK
   function stopTimer() {
     clearInterval(timerInterval);
   }
-   
 
 function removestartbutton() {
     btncontainer.removeChild(startbtn);
@@ -329,17 +322,17 @@ viewhighscore.addEventListener("click", function() {
     
   });
   gobackbtn.addEventListener("click",function() {
-    console.log("mouse click on Goback button");
-    btncontainer.innerHTML = ""; 
-    location.reload();
+    console.log("mouse click on Goback button"); //debug
+    btncontainer.innerHTML = ""; //clear the button's existence after it's been clicked
+    location.reload(); //reload the page to bring you to the main page
   })
 
   clearscoresbtn.addEventListener("click",function() {
-    console.log("mouse click on clear scores button");
-    btncontainer.innerHTML = ""; 
-    localStorage.clear();
-    location.reload();
-  })
+    console.log("mouse click on clear scores button"); //debug
+    btncontainer.innerHTML = ""; //clear the button's existence after it's been clicked
+    localStorage.clear(); //clear the previous scores
+    showhighscores()
+     })
 
   
   };
