@@ -15,6 +15,8 @@ Functions, functions functions and Arrays as well.
 ## Installation
 
 Just copy the full repo, launch Index.html and you should be good to go.
+or try this link:
+https://drdanik88.github.io/quizz/
 
 ## Usage
 
